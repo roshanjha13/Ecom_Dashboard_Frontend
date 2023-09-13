@@ -68,3 +68,100 @@
   text-decoration: none;
   padding: 10px;
 }
+/* .inputbox {
+  display: block;
+  margin: 25px;
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #282c34;
+  text-align: center;
+}
+.register {
+  margin: auto;
+} */
+
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin: auto; */
+  height: 500px;
+}
+
+.register_inner {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 30px 50px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  width: 350px;
+}
+h1 {
+  margin: 0;
+  font-size: 26px;
+  margin-bottom: 30px;
+  color: #2c3e50;
+  text-align: center;
+}
+
+.inputbox {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: none;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.inputbox:focus {
+  background: rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
+}
+
+.inputbox:hover {
+  background: rgba(0, 0, 0, 0.07);
+}
+.button {
+  background: linear-gradient(
+    45deg,
+    #6ee7b7,
+    #3fa7d6
+  ); /* gradient background */
+  border: none;
+  color: white; /* text color */
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 17px;
+  margin: 10px 2px;
+  cursor: pointer;
+  border-radius: 35px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* shadow for depth */
+  transition: all 0.3s ease-in-out; /* smooth transition for all properties */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* text shadow for depth */
+}
+
+/* Button hover effect */
+.button:hover {
+  background: linear-gradient(
+    45deg,
+    #3fa7d6,
+    #6ee7b7
+  ); /* reversed gradient on hover */
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4); /* deeper shadow on hover */
+  transform: scale(1.05); /* subtle grow effect */
+}
+
+/* Button focus effect (for keyboard users) */
+.button:focus {
+  outline: none; /* remove default focus outline */
+  box-shadow: 0 0 0 3px rgba(63, 167, 214, 0.5); /* add a soft focus glow */
+}
+
+/* Button active (click) effect */
+.button:active {
+  transform: scale(0.95); /* subtle push/shrink effect on click */
+}
