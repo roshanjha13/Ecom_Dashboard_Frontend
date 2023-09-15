@@ -24,9 +24,12 @@ const Login = () => {
     });
     result = await result.json();
     console.log(result);
-    localStorage.setItem("user", JSON.stringify(result));
-    if (result) {
+
+    if (result.name) {
+      localStorage.setItem("user", JSON.stringify(result));
       navigate("/");
+    } else {
+      alert("Please enter the correct details");
     }
   };
   return (
