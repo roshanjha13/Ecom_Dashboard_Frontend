@@ -14,9 +14,9 @@ function App() {
         <Routes>
           <Route element={<PrivateComponent />}>
             <Route path="/" element={<h1>Product Listing Component </h1>} />
-            <Route path="/add" element={<AddProduct />} />
+            <Route path="/add-product" element={<AddProduct />} />
             <Route
-              path="/update"
+              path="/update-product"
               element={<h1>update Product Component </h1>}
             />
             <Route path="/logout" element={<h1> Logout Component </h1>} />

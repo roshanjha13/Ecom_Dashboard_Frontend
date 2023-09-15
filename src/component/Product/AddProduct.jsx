@@ -7,9 +7,15 @@ const AddProduct = () => {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [company, setCompany] = useState("");
+  const [error, setError] = useState(false);
   //   const navigate = useNavigate();
 
   const submitProduct = async () => {
+    if (!name || !price || !company || !category) {
+      setError(true);
+      return false;
+    }
+
     // console.log(name, price, category, company);
     //set user id in local storage
     const userId = JSON.parse(localStorage.getItem("user"))._id;
@@ -35,6 +41,7 @@ const AddProduct = () => {
           onChange={(e) => setName(e.target.value)}
           placeholder="enter the product name"
         />
+        {error && !name && <span className="error">Enter Valid Name</span>}
         <input
           className="inputbox"
           type="text"
@@ -42,6 +49,7 @@ const AddProduct = () => {
           onChange={(e) => setPrice(e.target.value)}
           placeholder="enter the product price"
         />
+        {error && !price && <span className="error">Enter Valid price</span>}
         <input
           className="inputbox"
           type="text"
@@ -49,6 +57,9 @@ const AddProduct = () => {
           onChange={(e) => setCategory(e.target.value)}
           placeholder="enter the product category"
         />
+        {error && !category && (
+          <span className="error">Enter Valid Category</span>
+        )}
         <input
           className="inputbox"
           type="text"
@@ -56,6 +67,9 @@ const AddProduct = () => {
           onChange={(e) => setCompany(e.target.value)}
           placeholder="enter the product company"
         />
+        {error && !company && (
+          <span className="error">Enter Valid Company</span>
+        )}
         <button onClick={submitProduct} className="button" type="button">
           Add Product
         </button>

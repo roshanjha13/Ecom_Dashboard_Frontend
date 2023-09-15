@@ -22,10 +22,10 @@ const Nav = () => {
               <Link to="/">Products</Link>
             </li>
             <li>
-              <Link to="/add"> Add Products</Link>
+              <Link to="/add-product"> Add Products</Link>
             </li>
             <li>
-              <Link to="/update"> Update Products</Link>
+              <Link to="/update-product"> Update Products</Link>
             </li>
             <li>
               <Link to="/profile"> Profile</Link>
