@@ -4,6 +4,7 @@ import Nav from "./component/Header/Nav";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SignUp from "./component/SignUp/SignUp";
 import PrivateComponent from "./component/PrivateComponent/PrivateComponent";
+import Login from "./component/Login/Login";
 function App() {
   return (
     <div className="App">
@@ -21,6 +22,7 @@ function App() {
             <Route path="/profile" element={<h1>Its ME</h1>} />
           </Route>
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
       <Footer />
