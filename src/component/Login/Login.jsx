@@ -14,7 +14,7 @@ const Login = () => {
   }, []);
 
   const handleLogin = async () => {
-    console.log(email, password);
+    // console.log(email, password);
     let result = await fetch("http://localhost:5000/user/login", {
       method: "post",
       body: JSON.stringify({ email, password }),
@@ -23,7 +23,7 @@ const Login = () => {
       },
     });
     result = await result.json();
-    console.log(result);
+    // console.log(result);
 
     if (result.name) {
       localStorage.setItem("user", JSON.stringify(result));

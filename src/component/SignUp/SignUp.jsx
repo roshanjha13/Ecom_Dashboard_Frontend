@@ -15,7 +15,7 @@ const SignUp = () => {
   }, []);
 
   const submitData = async () => {
-    console.log(name, email, password);
+    // console.log(name, email, password);
     let result = await fetch("http://localhost:5000/user/register", {
       method: "post",
       body: JSON.stringify({ name, email, password }),
@@ -24,7 +24,7 @@ const SignUp = () => {
       },
     });
     result = await result.json();
-    console.log(result);
+    // console.log(result);
     localStorage.setItem("user", JSON.stringify(result));
     if (result) {
       navigate("/");

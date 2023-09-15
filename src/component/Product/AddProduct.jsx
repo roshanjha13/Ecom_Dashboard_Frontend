@@ -19,7 +19,7 @@ const AddProduct = () => {
     // console.log(name, price, category, company);
     //set user id in local storage
     const userId = JSON.parse(localStorage.getItem("user"))._id;
-    console.log(userId);
+    // console.log(userId);
     let result = await fetch("http://localhost:5000/product/add-product", {
       method: "post",
       body: JSON.stringify({ name, price, category, company, userId }),
@@ -28,7 +28,7 @@ const AddProduct = () => {
       },
     });
     result = await result.json();
-    console.log(result);
+    // console.log(result);
   };
   return (
     <div className="register">
