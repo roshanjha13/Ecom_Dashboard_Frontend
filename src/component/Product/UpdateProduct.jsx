@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import React from "react";
 //get id from url
-import { useParams } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const UpdateProduct = () => {
   const [name, setName] = useState("");
@@ -11,7 +10,7 @@ const UpdateProduct = () => {
   const [company, setCompany] = useState("");
   const params = useParams();
   //   const [error, setError] = useState(false);
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   //call param when our page load
   useEffect(() => {
@@ -36,8 +35,25 @@ const UpdateProduct = () => {
   };
 
   const updateProduct = async () => {
-    console.log(name, price, company, category);
+    let result = await fetch(
+      `http://localhost:5000/product/update-product/${params.id}`,
+      {
+        method: "put",
+        body: JSON.stringify({
+          name,
+          price,
+          category,
+          company,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    result = await result.json();
+    navigate("/");
   };
+
   return (
     <div className="register">
       <div className="register_inner">
