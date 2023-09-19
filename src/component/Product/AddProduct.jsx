@@ -1,6 +1,6 @@
 import { useState } from "react";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AddProduct = () => {
   const [name, setName] = useState("");
@@ -8,29 +8,88 @@ const AddProduct = () => {
   const [category, setCategory] = useState("");
   const [company, setCompany] = useState("");
   const [error, setError] = useState(false);
-  const navigate = useNavigate();
 
   const submitProduct = async () => {
+    // if (!name || !price || !company || !category) {
+    //   setError(true);
+    //   return false;
+    // }
+
+    // // console.log(name, price, category, company);
+    // //set user id in local storage
+    // const userId = JSON.parse(localStorage.getItem("user"))._id;
+    // // console.log(userId);
+    // let result = await fetch("http://localhost:5000/product/add-product", {
+    //   method: "post",
+    //   body: JSON.stringify({ name, price, category, company, userId }),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // });
+
+    // result = await result.json();
+
+    // setCategory("");
+    // setCompany("");
+    // setPrice("");
+    // setName("");
+
+    // console.log(result);
     if (!name || !price || !company || !category) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "All fields are required!",
+      });
       setError(true);
       return false;
     }
 
-    // console.log(name, price, category, company);
-    //set user id in local storage
     const userId = JSON.parse(localStorage.getItem("user"))._id;
-    // console.log(userId);
-    let result = await fetch("http://localhost:5000/product/add-product", {
-      method: "post",
-      body: JSON.stringify({ name, price, category, company, userId }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    result = await result.json();
-    navigate("/");
-    // console.log(result);
+
+    let result;
+    try {
+      const response = await fetch(
+        "http://localhost:5000/product/add-product",
+        {
+          method: "post",
+          body: JSON.stringify({ name, price, category, company, userId }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      result = await response.json();
+
+      if (response.ok) {
+        // Checking if HTTP status code is in the 200-299 range
+        Swal.fire({
+          icon: "success",
+          title: "Product Added ",
+          text: "Your product has been successfully added.",
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: result.message || "There was an error adding the product.", // Assuming there might be a message field in the result.
+        });
+      }
+
+      setCategory("");
+      setCompany("");
+      setPrice("");
+      setName("");
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Network Error",
+        text: "There was a problem connecting to the server.",
+      });
+    }
   };
+
   return (
     <div className="register">
       <div className="register_inner">

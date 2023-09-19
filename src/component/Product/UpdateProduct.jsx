@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import React from "react";
 //get id from url
 import { useParams, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UpdateProduct = () => {
   const [name, setName] = useState("");
@@ -34,24 +35,86 @@ const UpdateProduct = () => {
     setCompany(result.company);
   };
 
+  // const updateProduct = async () => {
+  //   let result = await fetch(
+  //     `http://localhost:5000/product/update-product/${params.id}`,
+  //     {
+  //       method: "put",
+  //       body: JSON.stringify({
+  //         name,
+  //         price,
+  //         category,
+  //         company,
+  //       }),
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     }
+  //   );
+  //   result = await result.json();
+  //   navigate("/");
+  // };
+
   const updateProduct = async () => {
-    let result = await fetch(
-      `http://localhost:5000/product/update-product/${params.id}`,
-      {
-        method: "put",
-        body: JSON.stringify({
-          name,
-          price,
-          category,
-          company,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to update this product?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, update it!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          let response = await fetch(
+            `http://localhost:5000/product/update-product/${params.id}`,
+            {
+              method: "put",
+              body: JSON.stringify({
+                name,
+                price,
+                category,
+                company,
+              }),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+
+          let data = await response.json();
+
+          if (response.ok) {
+            Swal.fire({
+              icon: "success",
+              title: "Product Updated",
+              text: "The product has been successfully updated.",
+            });
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Update Failed",
+              text: data.message || "There was an error updating the product.",
+            });
+          }
+
+          navigate("/");
+        } catch (error) {
+          Swal.fire({
+            icon: "error",
+            title: "Network Error",
+            text: "There was a problem connecting to the server.",
+          });
+        }
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire({
+          icon: "info",
+          title: "Cancelled",
+          text: "Product update was cancelled.",
+        });
       }
-    );
-    result = await result.json();
-    navigate("/");
+    });
   };
 
   return (
