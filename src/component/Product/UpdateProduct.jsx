@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
+//get id from url
+import { useParams } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 
 const UpdateProduct = () => {
@@ -7,8 +9,31 @@ const UpdateProduct = () => {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [company, setCompany] = useState("");
+  const params = useParams();
   //   const [error, setError] = useState(false);
   //   const navigate = useNavigate();
+
+  //call param when our page load
+  useEffect(() => {
+    getProductDetails();
+  }, []);
+
+  const getProductDetails = async () => {
+    // console.log(params);
+    let result = await fetch(
+      `http://localhost:5000/product/get-product/${params.id}`,
+      {
+        method: "get",
+      }
+    );
+    //convert op into json
+    result = await result.json();
+    //prefill the data
+    setName(result.name);
+    setPrice(result.price);
+    setCategory(result.category);
+    setCompany(result.company);
+  };
 
   const updateProduct = async () => {
     console.log(name, price, company, category);
@@ -62,3 +87,5 @@ const UpdateProduct = () => {
 };
 
 export default UpdateProduct;
+
+// prefill data in useState, whose you make in setName etc
