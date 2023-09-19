@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { Link } from "react-router-dom";
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
@@ -32,8 +32,10 @@ const ProductList = () => {
       <h3>Product List</h3>
       <ul>
         <li>S.No.</li>
+
         <li>Name</li>
         <li>Price</li>
+        <li>Company</li>
         <li>Category</li>
         <li>Action</li>
       </ul>
@@ -42,9 +44,12 @@ const ProductList = () => {
           <li>{index + 1}</li>
           <li>{elem.name}</li>
           <li>{elem.price}</li>
+          <li>{elem.company}</li>
           <li>{elem.category}</li>
           <li>
             <button onClick={() => deleteProduct(elem._id)}>Delete</button>
+
+            <Link to={`/update-product/${elem._id}`}>Update</Link>
           </li>
         </ul>
       ))}

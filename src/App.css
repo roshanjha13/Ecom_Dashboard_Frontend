@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(184, 20, 20);
 }
 
 .App-link {
@@ -86,7 +86,7 @@
   justify-content: center;
   align-items: center;
   /* margin: auto; */
-  height: 500px;
+  height: 475px;
 }
 
 .register_inner {
