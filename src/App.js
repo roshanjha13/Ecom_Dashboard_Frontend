@@ -19,7 +19,6 @@ function App() {
             <Route path="/add-product" element={<AddProduct />} />
             <Route path="/update-product/:id" element={<UpdateProduct />} />
             <Route path="/logout" element={<h1> Logout Component </h1>} />
-            <Route path="/profile" element={<h1>Its ME</h1>} />
           </Route>
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />

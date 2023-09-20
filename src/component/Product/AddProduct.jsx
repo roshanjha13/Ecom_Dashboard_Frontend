@@ -99,7 +99,7 @@ const AddProduct = () => {
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="enter the product name"
+          placeholder="Enter the product name"
         />
         {error && !name && <span className="error">Enter Valid Name</span>}
         <input
@@ -107,7 +107,7 @@ const AddProduct = () => {
           type="text"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
-          placeholder="enter the product price"
+          placeholder="Enter the product price"
         />
         {error && !price && <span className="error">Enter Valid price</span>}
         <input
@@ -115,7 +115,7 @@ const AddProduct = () => {
           type="text"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          placeholder="enter the product category"
+          placeholder="Enter the product category"
         />
         {error && !category && (
           <span className="error">Enter Valid Category</span>
@@ -125,7 +125,7 @@ const AddProduct = () => {
           type="text"
           value={company}
           onChange={(e) => setCompany(e.target.value)}
-          placeholder="enter the product company"
+          placeholder="Enter the product company"
         />
         {error && !company && (
           <span className="error">Enter Valid Company</span>

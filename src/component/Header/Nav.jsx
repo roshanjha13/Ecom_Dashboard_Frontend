@@ -5,7 +5,7 @@ const Nav = () => {
   const navigate = useNavigate();
   const logout = () => {
     localStorage.clear();
-    navigate("/signup");
+    navigate("/login");
   };
 
   return (
@@ -26,10 +26,7 @@ const Nav = () => {
             </li>
 
             <li>
-              <Link to="/profile"> Profile</Link>
-            </li>
-            <li>
-              <Link onClick={logout} to="/signup">
+              <Link onClick={logout} to="/login">
                 Logout ({JSON.parse(auth).name})
               </Link>
             </li>
